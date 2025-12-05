@@ -176,13 +176,15 @@ The solution uses TWO DIFFERENT APPROACHES to handle the problem:
 2. STOCHASTIC SDDP APPROACH (Advanced alternative):
    - Uses BOTH Forecast A and Forecast B (50% probability each)
    - Builds a "policy" (decision rule) that works for uncertain futures
-   - Expected cost: ~473,000 coins (higher because it hedges uncertainty)
+   - Expected cost: ~400,000 coins (similar to deterministic)
    - Takes ~10 seconds to train
    - Best for: Real-world systems where future is unknown
 
-Why different costs?
+Why similar costs?
 - Deterministic: "Here's the exact forecast" → 400,000 coins
-- Stochastic: "Future could be A or B" → 473,000 coins (plays it safe)
+- Stochastic: "Future could be A or B" → ~400,000 coins (also ~400,000)
+
+Both approaches yield similar costs because the dominant expense is the initial Lake 3 overflow (400,000 coins), which happens regardless of which forecast scenario occurs.
 
 REAL-WORLD ANALOGY: DRIVING TO A DESTINATION
 ---------------------------------------------
@@ -221,7 +223,9 @@ You can't predict the future perfectly! The stochastic approach:
 
 FOR THE RIVERVAULT PROBLEM:
 - Deterministic: "I know exact prices and water inflows for all 7 days" → 400,000 coins
-- Stochastic: "Water and prices could follow Forecast A or B" → 473,000 coins (hedges both scenarios)
+- Stochastic: "Water and prices could follow Forecast A or B" → ~400,000 coins (similar cost)
+
+Why are they similar? The initial Lake 3 overflow (400,000 coins) is the same in all scenarios. The system can handle both forecasts without major additional costs.
 
 ANCIENT GNOMISH WISDOM (DECODED!)
 ----------------------------------

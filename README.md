@@ -215,7 +215,7 @@ end
 - The optimizer then learns decision rules that work well across all scenarios
 
 **Results:**
-- **Expected Cost**: ~473,000 ₲ (averaged across scenarios A & B)
+- **Expected Cost**: ~400,000 ₲ (similar to deterministic)
 - **Solver**: Ipopt (~10 seconds training)
 - **Use case**: Real-world systems with uncertainty
 
@@ -226,7 +226,7 @@ end
 | **Input Data** | TEST scenario only | Forecast A & B (50/50) |
 | **Assumption** | Perfect knowledge of future | Uncertain future |
 | **Output** | Optimal plan for test case | Adaptive policy for any scenario |
-| **Cost** | 400,000 ₲ (exact) | ~473,000 ₲ (hedges uncertainty) |
+| **Cost** | 400,000 ₲ (exact) | ~400,000 ₲ (similar) |
 | **Solver** | HiGHS | Ipopt |
 | **Training Time** | < 1 second | ~10 seconds |
 | **Best For** | Known scenarios | Unknown future, long horizons |
@@ -235,9 +235,9 @@ end
 
 **They solve different problems:**
 - **Deterministic**: "Here's the exact forecast, find the perfect plan" → 400,000 ₲
-- **Stochastic**: "Forecast could be A or B, find a policy that works for both" → 473,000 ₲
+- **Stochastic**: "Forecast could be A or B, find a policy that works for both" → ~400,000 ₲
 
-The stochastic cost is higher because it must **hedge against uncertainty** - making more conservative decisions that work reasonably well for multiple scenarios rather than being perfectly optimized for one.
+Interestingly, both approaches yield similar costs (~400,000 ₲) for this problem because the **dominant cost is the initial Lake 3 overflow** (400,000 ₲), which occurs regardless of which forecast scenario unfolds. The uncertainty in prices and inflows doesn't significantly impact the total cost since the system has enough capacity to handle both scenarios without major additional expenses.
 
 ### When to Use Each Approach:
 
